@@ -30,6 +30,7 @@
 
 body {
     background-color: var(--body-color);
+    width: 100%;
 }
 
 
@@ -771,7 +772,7 @@ footer {
 @media screen and (max-width : 900px) {
 
     .mode {
-        margin-left: -10%;
+        margin-left: 0;
     }
 
     .nav-menu-btn {
@@ -812,6 +813,10 @@ footer {
         flex-direction: column;
         justify-content: center;
         height: 100vh;
+    }
+
+    .featured-image{
+        margin-bottom: 130px;
     }
 
     .featured-text {
@@ -870,7 +875,6 @@ footer {
     .mode {
         display: flex;
         align-items: center;
-        margin-left: 60%;
     }
 
 }
@@ -884,22 +888,17 @@ footer {
     .image img {
         margin-left: -35px;
     }
-
-    .mode {
-        margin-left: -5%;
-    }
 }
 
 @media screen and (max-width:540px) {
 
+    .section{
+        align-items: center;
+    }
+
     .image img {
         margin-left: -20px;
     }
-
-    .mode {
-        margin-left: -5%;
-    }
-
     .featured-name {
         font-size: 40px;
     }
@@ -930,6 +929,10 @@ footer {
 
     .skills-set {
         grid-template-columns: auto auto;
+    }
+
+    .middle-footer{
+        flex-direction: column;
     }
 
 }
