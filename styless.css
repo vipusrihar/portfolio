@@ -890,6 +890,10 @@ footer {
     .image img {
         margin-left: -35px;
     }
+
+    .typedText{
+        font-size: 35px;
+    }
 }
 
 @media screen and (max-width:540px) {
