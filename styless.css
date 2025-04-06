@@ -671,7 +671,7 @@ i {
     padding-inline: 20px;
     border-radius: 10px;
     outline: none;
-    color:var(--text-color);
+    color: var(--text-color);
 }
 
 label {
@@ -687,7 +687,7 @@ label {
     padding-inline: 20px;
     margin-bottom: 10px;
     outline: none;
-    color:var(--text-color);
+    color: var(--text-color);
 }
 
 textarea {
@@ -817,7 +817,7 @@ footer {
         height: 100vh;
     }
 
-    .featured-image{
+    .featured-image {
         margin-bottom: 130px;
     }
 
@@ -894,13 +894,14 @@ footer {
 
 @media screen and (max-width:540px) {
 
-    .section{
+    .section {
         align-items: center;
     }
 
     .image img {
         margin-left: -20px;
     }
+
     .featured-name {
         font-size: 40px;
     }
@@ -933,7 +934,7 @@ footer {
         grid-template-columns: auto auto;
     }
 
-    .middle-footer{
+    .middle-footer {
         flex-direction: column;
     }
 
