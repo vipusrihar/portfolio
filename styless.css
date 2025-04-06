@@ -671,6 +671,7 @@ i {
     padding-inline: 20px;
     border-radius: 10px;
     outline: none;
+    color:var(--text-color);
 }
 
 label {
@@ -686,6 +687,7 @@ label {
     padding-inline: 20px;
     margin-bottom: 10px;
     outline: none;
+    color:var(--text-color);
 }
 
 textarea {
@@ -836,8 +838,8 @@ footer {
         justify-content: center;
         min-height: 150px;
         width: 100%;
-        margin-top: 65px;
-        margin-left: 20px;
+        margin-top: 200px;
+        margin-left: 0;
     }
 
     .image,
