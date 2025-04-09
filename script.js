@@ -1,14 +1,60 @@
-const form = document.querySelector('form');
-const result = document.getElementById('result');
+const form = document.getElementById('contact-form');
+const button = document.getElementById('submitbtn');
 
 form.addEventListener('submit', function (e) {
-    const formData = new FormData(form);
     e.preventDefault();
 
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Validation checks 
+    if (name === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Name Required',
+            text: 'Please enter your name.'
+        });
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid Email',
+            text: 'Please enter a valid email address.'
+        });
+        return;
+    }
+
+    if (subject.length < 3) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Short Subject',
+            text: 'Subject must be at least 3 characters.'
+        });
+        return;
+    }
+
+    if (message.length < 10) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Short Message',
+            text: 'Message must be at least 10 characters.'
+        });
+        return;
+    }
+
+    button.disabled = true;
+    button.innerHTML = "Sending...";
+
+    const formData = new FormData(form);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
-
-    result.innerHTML = "Please wait..."
 
     fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -20,24 +66,35 @@ form.addEventListener('submit', function (e) {
     })
         .then(async (response) => {
             let json = await response.json();
-            if (response.status == 200) {
-                result.innerHTML = json.message;
+            if (response.status === 200) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Message Sent!',
+                    text: json.message
+                });
             } else {
-                console.log(response);
-                result.innerHTML = json.message;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: json.message
+                });
             }
         })
-        .catch(error => {
+        .catch((error) => {
             console.log(error);
-            result.innerHTML = "Something went wrong!";
+            Swal.fire({
+                icon: 'error',
+                title: 'Something went wrong!',
+                text: 'Please try again later.'
+            });
         })
-        .then(function () {
+        .finally(() => {
             form.reset();
-            setTimeout(() => {
-                result.style.display = "none";
-            }, 3000);
+            button.disabled = false;
+            button.innerHTML = `Send <i class='uil uil-message'></i>`;
         });
 });
+
 
 
 function myMenuFunction() {
