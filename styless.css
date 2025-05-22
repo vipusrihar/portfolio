@@ -524,7 +524,7 @@ i {
     flex-direction: column;
     justify-content: space-between;
     /* makes description and button space nicely */
-    width: 40%;
+    width:40%;
     min-height: 300px;
     /* force same height for all cards */
     background: transparent;
@@ -550,6 +550,11 @@ i {
     border-radius: 10px;
 }
 
+.mobiler{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
 
 .project-box::after,
 .contact-info::after {
@@ -573,6 +578,14 @@ i {
     z-index: 2;
     zoom: 1.3;
 }
+
+.project-box:hover.project-box>h3,
+.project-box:hover.project-box>.mobile {
+    color: #a58383;
+    z-index: 2;
+    zoom: 1.2;
+}
+
 
 .download-btn {
     position: absolute;
