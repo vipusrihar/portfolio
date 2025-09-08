@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vipusa Sriharan</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vipusa Sriharan | Software Engineer Undergraduate</title>
+    <meta name="description"
+        content="Portfolio of Vipusa Sriharan, Software Engineering Undergraduate at University of Kelaniya">
     <link href="styless.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.2.0/css/line.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/devicons@1.8.0/css/devicons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -44,7 +49,6 @@
 
                 </ul>
             </div>
-
             <div class="mode">
                 <div class="moon-sun" id="toggle-switch">
                     <i class="fa fa-moon" id="moon"></i>
@@ -58,7 +62,6 @@
         </nav>
 
         <main class="wrapper">
-
             <section class="featured-box" id="home">
                 <div class="featured-text">
                     <div class="hello">
@@ -80,10 +83,15 @@
                         <div class="icon"><a href="https://www.hackerrank.com/profile/vipusrihar"
                                 aria-label="HackerRank Profile"><i class='fa-brands fa-hackerrank'></i></a></div>
                     </div>
-                    <div class="cv">
+                    <div class="cta-buttons">
                         <a href="cv.pdf" download="Vipusa_CV.pdf">
                             <button class="download btn">
                                 Download CV <i class="fa-solid fa-cloud-arrow-down"></i>
+                            </button>
+                        </a>
+                        <a href="#contact">
+                            <button class="contact-btn btn">
+                                Contact Me <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         </a>
                     </div>
@@ -105,12 +113,13 @@
                 </div>
                 <div class="about-info">
                     <figure class="about-me">
-                        <figcaption>
+                        <div class="about-image">
                             <img src="images/Vipusa.jpeg"
                                 alt="Profile picture of Vipusa Sriharan, Software Engineering Undergraduate"
                                 class="profile">
-                            <h2>Software engineering undergraduate</h2>
-
+                        </div>
+                        <figcaption>
+                            <h2>Software Engineering Undergraduate</h2>
                             <p>
                                 Hi! I'm <strong>Vipusa Sriharan</strong>, a third-year Software Engineering
                                 undergraduate at the
@@ -120,7 +129,7 @@
                             </p>
 
                             <p>
-                                Currently, I’m diving deep into <strong>Spring Boot</strong>, <strong>React.js</strong>,
+                                Currently, I'm diving deep into <strong>Spring Boot</strong>, <strong>React.js</strong>,
                                 and hybrid mobile
                                 development using <strong>React Native</strong>. I enjoy
                                 solving real-world
@@ -130,23 +139,20 @@
                             <p>
                                 I'm especially excited about <strong>cross-platform mobile development</strong> with
                                 React Native, and I'm always open to
-                                collaborating on innovative ideas. <strong>Feel free to reach out!</strong> Whether it’s
+                                collaborating on innovative ideas. <strong>Feel free to reach out!</strong> Whether it's
                                 for a new project, a coding
-                                challenge, or a creative tech collaboration, I’m eager to learn and contribute.
+                                challenge, or a creative tech collaboration, I'm eager to learn and contribute.
                             </p>
 
                             <p>
                                 I strongly believe in continuous learning and building solutions that make a meaningful
-                                impact. Let’s connect and
+                                impact. Let's connect and
                                 create something great together!
                             </p>
-
-
                         </figcaption>
                     </figure>
                 </div>
             </section>
-
 
             <section class="section" id="education">
                 <div class="top-header">
@@ -315,13 +321,10 @@
                     <h1>Projects</h1>
                 </div>
                 <div class="project-container">
-
                     <div class="project-box">
                         <h3>Fuel Quota Management System</h3>
                         <img src="images/fuel-quota-system.png" alt="Fuel Quota Management System"
                             class="project-image">
-
-
                         <div class="project-description">
                             <p>
                                 A full-stack web and mobile solution to manage fuel distribution efficiently...
@@ -333,9 +336,10 @@
                                 <li><strong>Deployment:</strong> XAMPP (Local Server)</li>
                             </ul>
                         </div>
-
-                        <a href="https://github.com/vipusrihar/Fuel-Quota-Management-System" class="download-btn"
-                            target="_blank">Source Code</a>
+                        <div class="project-actions">
+                            <a href="https://github.com/vipusrihar/Fuel-Quota-Management-System" class="download-btn"
+                                target="_blank">Source Code</a>
+                        </div>
                     </div>
 
                     <div class="project-box">
@@ -354,18 +358,17 @@
                                 <li><strong>Deployment:</strong> XAMPP (Local Server)</li>
                             </ul>
                         </div>
-
-                        <a href="https://github.com/vipusrihar/QuickBites" class="download-btn" target="_blank">Source
-                            Code</a>
+                        <div class="project-actions">
+                            <a href="https://github.com/vipusrihar/QuickBites" class="download-btn"
+                                target="_blank">Source
+                                Code</a>
+                        </div>
                     </div>
-
 
                     <div class="project-box">
                         <h3>To-Do-List Mobile Application</h3>
                         <img src="images/to-do-list.jpeg" alt="To-Do-List Application" class="project-image mobile"
                             id="to-do-mobile">
-
-
                         <div class="project-description">
                             <p>
                                 A mobile application for managing daily tasks efficiently. Users can add, edit, delete,
@@ -378,17 +381,16 @@
                                 <li><strong>Features:</strong> Add, edit, delete, and share habits</li>
                             </ul>
                         </div>
-
-                        <a href="https://github.com/vipusrihar/Habit_Tracker" class="download-btn"
-                            target="_blank">Source Code</a>
-
+                        <div class="project-actions">
+                            <a href="https://github.com/vipusrihar/Habit_Tracker" class="download-btn"
+                                target="_blank">Source Code</a>
+                        </div>
                     </div>
 
                     <div class="project-box">
                         <h3>Habit_Tracker Mobile Application</h3>
                         <img src="images/habit-tracker.jpeg" alt="Habit-Tracker Application"
                             class="project-image mobile" id="habit-tracker">
-
                         <div class="project-description">
                             <p>
                                 A mobile application to track daily habits with support for boolean and count-based
@@ -401,19 +403,16 @@
                                 <li><strong>Features:</strong> Add, edit, delete, and track habits</li>
                                 <li><strong>Tracking Support:</strong> Boolean and count-based habits</li>
                             </ul>
-
                         </div>
-
-                        <a href="https://github.com/vipusrihar/Habit_Tracker" class="download-btn"
-                            target="_blank">Source Code</a>
+                        <div class="project-actions">
+                            <a href="https://github.com/vipusrihar/Habit_Tracker" class="download-btn"
+                                target="_blank">Source Code</a>
+                        </div>
                     </div>
-
 
                     <div class="project-box">
                         <h3>Simple Course-Staff Updater</h3>
                         <img src="images/simple-course-staff.png" alt="Course Staff Updater" class="project-image">
-
-
                         <div class="project-description">
                             <p>
                                 A lightweight admin panel tool for updating course and staff details, built using PHP
@@ -424,16 +423,12 @@
                                 <li><strong>Frontend:</strong> HTML, CSS</li>
                                 <li><strong>Deployment:</strong> XAMPP (Local Server)</li>
                             </ul>
-
-
                         </div>
-
-                        <a href="https://github.com/vipusrihar/Simple-Course-Staff" class="download-btn"
-                            target="_blank">Source Code</a>
-
+                        <div class="project-actions">
+                            <a href="https://github.com/vipusrihar/Simple-Course-Staff" class="download-btn"
+                                target="_blank">Source Code</a>
+                        </div>
                     </div>
-
-
                 </div>
             </section>
 
@@ -449,23 +444,26 @@
                         <!-- Name Input -->
                         <div class="form-inputs">
                             <label for="name">Name</label>
-                            <input type="text" name="name" placeholder="Your Name" class="input-field" id="name">
+                            <input type="text" name="name" placeholder="Your Name" class="input-field" id="name"
+                                required>
 
                             <!-- Email Input -->
                             <label for="email">Email</label>
-                            <input type="email" name="email" placeholder="Your Email" class="input-field" id="email">
+                            <input type="email" name="email" placeholder="Your Email" class="input-field" id="email"
+                                required>
                         </div>
 
                         <!-- Subject Input -->
                         <div class="text-area">
                             <label for="subject">Subject</label>
-                            <input type="text" name="subject" placeholder="Subject" class="input-subject" id="subject">
+                            <input type="text" name="subject" placeholder="Subject" class="input-subject" id="subject"
+                                required>
                         </div>
 
                         <!-- Message Textarea -->
                         <div class="text-area">
                             <label for="message">Message</label>
-                            <textarea name="message" placeholder="Your message" id="message"></textarea>
+                            <textarea name="message" placeholder="Your message" id="message" required></textarea>
                         </div>
 
                         <!-- Submit Button -->
@@ -479,9 +477,6 @@
                     </div>
                 </form>
             </section>
-
-
-
         </main>
 
         <footer>
@@ -518,22 +513,25 @@
                 </ul>
             </div>
             <div class="bottom-footer">
-                <p>&copy; created by Vipusa | All rights reserved </p>
+                <p>&copy; 2023 created by Vipusa | All rights reserved </p>
             </div>
         </footer>
     </div>
 
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
-
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script src="script.js"></script>
-
-
 </body>
 
 </html>
