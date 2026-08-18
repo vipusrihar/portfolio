@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ──────────────────────────────────────────────────── */
+:root {
+  --ink: #10141c;
+  --ink-raised: #171c27;
+  --paper: #f5f2ea;
+  --paper-raised: #ffffff;
+
+  --text-primary: #10141c;
+  --text-secondary: #4b5160;
+  --text-on-ink: #eceae4;
+  --text-on-ink-secondary: #9aa1b0;
+
+  --signal: #12a889;
+  --signal-soft: #d7f0e9;
+  --violet: #6a5cd9;
+  --amber: #d99a3d;
+
+  --hairline: #dcd6c8;
+  --hairline-ink: #262c3a;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+.dark {
+  --text-primary: var(--text-on-ink);
+  --text-secondary: var(--text-on-ink-secondary);
+  --hairline: var(--hairline-ink);
+  --signal-soft: rgba(18, 168, 137, 0.14);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
+  --color-violet: var(--violet);
+  --color-amber: var(--amber);
+  --color-hairline: var(--hairline);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+/* ── Base ────────────────────────────────────────────────────────────── */
+* {
+  border-color: var(--hairline);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background: var(--ink);
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Signature: dotted trace line between sections ─────────────────────
+   A faint vertical trace runs behind the page, evoking a request path /
+   network trace. Section markers "connect" to it. */
+.trace-line {
+  background-image: linear-gradient(
+    to bottom,
+    var(--hairline) 0,
+    var(--hairline) 6px,
+    transparent 6px,
+    transparent 14px
+  );
+  background-size: 1px 14px;
+  background-repeat: repeat-y;
+}
+
+.status-dot {
+  box-shadow: 0 0 0 3px var(--signal-soft);
+}
+
+.mono-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.02em;
+}
