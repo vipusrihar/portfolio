@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/data";
+import { withBasePath } from "@/lib/basePath";
 
 const methodColor: Record<string, string> = {
   GET: "text-signal",
@@ -19,7 +20,7 @@ export function ProjectCard({ project }: { project: Project }) {
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-hairline transition-colors hover:border-signal">
       <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-hairline bg-paper-raised dark:bg-ink-raised">
         <Image
-          src={project.image}
+          src={withBasePath(project.image)}
           alt={project.imageAlt}
           fill
           sizes="(min-width: 768px) 33vw, 100vw"

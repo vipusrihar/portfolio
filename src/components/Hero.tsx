@@ -6,6 +6,7 @@ import { profile } from "@/lib/data";
 import { useTypewriter } from "@/lib/useTypewriter";
 import { Reveal } from "./Reveal";
 import { GithubIcon, LinkedinIcon, MediumIcon, HackerrankIcon } from "./icons";
+import { withBasePath } from "@/lib/basePath";
 
 const socialIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   github: GithubIcon,
@@ -74,7 +75,7 @@ export function Hero() {
 
         <Reveal delay={0.24} className="mt-8 flex flex-wrap items-center gap-4">
           <a
-            href={profile.resumeUrl}
+            href={withBasePath(profile.resumeUrl)}
             download
             className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-transform hover:-translate-y-0.5 dark:bg-paper dark:text-ink"
           >
@@ -112,7 +113,7 @@ export function Hero() {
       <Reveal delay={0.1} className="w-48 shrink-0 md:w-64">
         <div className="relative aspect-square overflow-hidden rounded-full border border-hairline bg-paper-raised dark:bg-ink-raised">
           <Image
-            src={profile.avatarUrl}
+            src={withBasePath(profile.avatarUrl)}
             alt={`Portrait of ${profile.name}`}
             fill
             sizes="256px"
