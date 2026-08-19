@@ -6,6 +6,8 @@ import { profile } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
 import { Reveal } from "./Reveal";
 import { withBasePath } from "@/lib/basePath";
+import { sendEmailViaResend } from "@/lib/resend-client";
+
 
 type Status =
   | { state: "idle" }
@@ -52,21 +54,13 @@ export function Contact() {
     setStatus({ state: "sending" });
 
     try {
-      const response = await fetch(withBasePath("/api/contact"), {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, subject, message, }),
-      });
 
-      const result = await response.json();
+      const result = await sendEmailViaResend({ name, email, subject, message });
 
-      if (!response.ok) {
+      if (result.error) {
         setStatus({
           state: "error",
-          message: `${response.status} — ${result.message ?? "Something went wrong."
-            }`,
+          message: `500 — ${result.error.message}`,
         });
         return;
       }
