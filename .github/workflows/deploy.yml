@@ -43,6 +43,9 @@ jobs:
           fi
 
       - name: Build static export
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
         run: npm run build
 
       - name: Configure Pages
