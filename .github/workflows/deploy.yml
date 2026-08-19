@@ -44,8 +44,8 @@ jobs:
 
       - name: Build static export
         env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
+          NEXT_PUBLIC_RESEND_API_KEY: ${{ secrets.NEXT_PUBLIC_RESEND_API_KEY }}
+          NEXT_PUBLIC_CONTACT_EMAIL: ${{ secrets.NEXT_PUBLIC_CONTACT_EMAIL }}
         run: npm run build
 
       - name: Configure Pages
