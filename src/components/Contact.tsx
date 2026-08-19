@@ -5,6 +5,7 @@ import { Send, Loader2 } from "lucide-react";
 import { profile } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
 import { Reveal } from "./Reveal";
+import { withBasePath } from "@/lib/basePath";
 
 type Status =
   | { state: "idle" }
@@ -51,7 +52,7 @@ export function Contact() {
     setStatus({ state: "sending" });
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(withBasePath("/api/contact"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
