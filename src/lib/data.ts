@@ -179,6 +179,3 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/vipusrihar/Simple-Course-Staff",
   },
 ];
-
-// Web3Forms access key — https://web3forms.com. Free, no backend required.
-export const contactFormAccessKey = "1d5266b1-e2d4-49cc-97b9-a320608cc968";

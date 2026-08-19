@@ -5,10 +5,6 @@ import { Send, Loader2 } from "lucide-react";
 import { profile } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
 import { Reveal } from "./Reveal";
-import { withBasePath } from "@/lib/basePath";
-import { sendEmailViaResend } from "@/lib/resend-client";
-
-
 type Status =
   | { state: "idle" }
   | { state: "sending" }
@@ -55,12 +51,18 @@ export function Contact() {
 
     try {
 
-      const result = await sendEmailViaResend({ name, email, subject, message });
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
 
-      if (result.error) {
+      const result = await response.json();
+
+      if (!response.ok) {
         setStatus({
           state: "error",
-          message: `500 — ${result.error.message}`,
+          message: `${response.status} — ${result.message ?? "Something went wrong."}`,
         });
         return;
       }
