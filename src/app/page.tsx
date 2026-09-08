@@ -23,7 +23,7 @@ export default function Home() {
         <Education />
         <Skills />
         <Projects />
-        <Research />
+        {/* <Research /> */}
         {/* <Achievements /> */}
         <Certificates />
         {/* <GithubDashboard /> */}
