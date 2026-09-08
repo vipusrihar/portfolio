@@ -1,60 +1,45 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* ── Design tokens ──────────────────────────────────────────────────── */
+/* ── Design tokens (per brief) ──────────────────────────────────────── */
 :root {
-  --ink: #10141c;
-  --ink-raised: #171c27;
-  --paper: #f5f2ea;
-  --paper-raised: #ffffff;
+  --background: #020617;
+  --surface: #0f172a;
+  --card: #1e293b;
+  --border: rgba(255, 255, 255, 0.08);
 
-  --text-primary: #10141c;
-  --text-secondary: #4b5160;
-  --text-on-ink: #eceae4;
-  --text-on-ink-secondary: #9aa1b0;
+  --primary: #4f46e5;
+  --secondary: #06b6d4;
+  --accent: #8b5cf6;
 
-  --signal: #12a889;
-  --signal-soft: #d7f0e9;
-  --violet: #6a5cd9;
-  --amber: #d99a3d;
-
-  --hairline: #dcd6c8;
-  --hairline-ink: #262c3a;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-}
-
-.dark {
-  --text-primary: var(--text-on-ink);
-  --text-secondary: var(--text-on-ink-secondary);
-  --hairline: var(--hairline-ink);
-  --signal-soft: rgba(18, 168, 137, 0.14);
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 @theme inline {
-  --color-ink: var(--ink);
-  --color-ink-raised: var(--ink-raised);
-  --color-paper: var(--paper);
-  --color-paper-raised: var(--paper-raised);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
-  --color-signal: var(--signal);
-  --color-signal-soft: var(--signal-soft);
-  --color-violet: var(--violet);
-  --color-amber: var(--amber);
-  --color-hairline: var(--hairline);
+  --color-text-muted: var(--text-muted);
 
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);
 }
 
-/* ── Base ────────────────────────────────────────────────────────────── */
+/* ── Base ───────────────────────────────────────────────────────────── */
 * {
-  border-color: var(--hairline);
+  border-color: var(--border);
 }
 
 html {
@@ -62,23 +47,18 @@ html {
 }
 
 body {
-  background: var(--paper);
+  background: var(--background);
   color: var(--text-primary);
   font-family: var(--font-body);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.dark body {
-  background: var(--ink);
 }
 
 ::selection {
-  background: var(--signal);
-  color: var(--paper);
+  background: var(--primary);
+  color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--signal);
+  outline: 2px solid var(--secondary);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -97,26 +77,47 @@ body {
   }
 }
 
-/* ── Signature: dotted trace line between sections ─────────────────────
-   A faint vertical trace runs behind the page, evoking a request path /
-   network trace. Section markers "connect" to it. */
-.trace-line {
-  background-image: linear-gradient(
-    to bottom,
-    var(--hairline) 0,
-    var(--hairline) 6px,
-    transparent 6px,
-    transparent 14px
-  );
-  background-size: 1px 14px;
-  background-repeat: repeat-y;
-}
-
-.status-dot {
-  box-shadow: 0 0 0 3px var(--signal-soft);
-}
-
 .mono-label {
   font-family: var(--font-mono), ui-monospace, monospace;
   letter-spacing: 0.02em;
+}
+
+/* ── Signature surfaces ─────────────────────────────────────────────── */
+.glass-card {
+  background: color-mix(in srgb, var(--card) 60%, transparent);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--secondary), var(--primary) 55%, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.hero-glow {
+  background:
+    radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--primary) 35%, transparent), transparent 45%),
+    radial-gradient(circle at 85% 15%, color-mix(in srgb, var(--secondary) 28%, transparent), transparent 40%),
+    radial-gradient(circle at 50% 90%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 45%);
+  filter: blur(60px);
+}
+
+.glow-border {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.glow-border:hover {
+  border-color: color-mix(in srgb, var(--secondary) 55%, var(--border));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--secondary) 25%, transparent),
+    0 12px 40px -12px color-mix(in srgb, var(--primary) 45%, transparent);
+  transform: translateY(-3px);
 }

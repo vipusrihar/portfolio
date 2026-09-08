@@ -1,70 +1,99 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Globe2,
+} from "lucide-react";
 import type { Project } from "@/lib/data";
 import { withBasePath } from "@/lib/basePath";
 
-const methodColor: Record<string, string> = {
-  GET: "text-signal",
-  POST: "text-violet",
-  PUT: "text-amber",
-};
-
-const statusColor: Record<string, string> = {
-  "200 OK": "text-signal bg-signal-soft",
-  "201 Created": "text-violet bg-violet/10",
-  Archived: "text-text-secondary bg-hairline/40",
+const statusStyle: Record<string, string> = {
+  Ongoing: "text-secondary bg-secondary/15",
+  Completed: "text-emerald-400 bg-emerald-400/15",
+  "Research Ongoing": "text-accent bg-accent/15",
+  Rebuilding: "text-amber-400 bg-amber-400/15",
 };
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-hairline transition-colors hover:border-signal">
-      <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-hairline bg-paper-raised dark:bg-ink-raised">
+    <article className="glow-border flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/60">
+      <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border bg-card">
         <Image
           src={withBasePath(project.image)}
           alt={project.imageAlt}
           fill
-          sizes="(min-width: 768px) 33vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover transition-transform duration-500 hover:scale-[1.03]"
         />
+
+        <span
+          className={`absolute right-3 top-3 rounded-full px-2.5 py-1 text-xs font-medium ${statusStyle[project.status]}`}
+        >
+          {project.status}
+        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <div className="mono-label mb-3 flex items-center justify-between text-xs">
-          <span className="flex items-center gap-2">
-            <span className={methodColor[project.method]}>{project.method}</span>
-            <span className="text-text-secondary">{project.endpoint}</span>
-          </span>
-          <span className={`rounded-full px-2 py-0.5 ${statusColor[project.status]}`}>
-            {project.status}
-          </span>
-        </div>
-
         <h3 className="font-display text-lg font-semibold text-text-primary">
           {project.name}
         </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-text-secondary">
+
+        <p className="mt-2 text-sm leading-relaxed text-text-secondary">
           {project.summary}
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {project.stack.map((tech) => (
+        <ul className="mt-4 grid gap-1.5">
+          {project.features.slice(0, 4).map((f) => (
+            <li
+              key={f}
+              className="flex items-start gap-2 text-xs text-text-secondary"
+            >
+              <CheckCircle2
+                size={13}
+                className="mt-0.5 shrink-0 text-secondary"
+              />
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-4 flex flex-1 flex-wrap items-end gap-1.5">
+          {project.tech.map((tech) => (
             <span
               key={tech}
-              className="mono-label rounded-full bg-hairline/40 px-2 py-1 text-[11px] text-text-secondary"
+              className="mono-label rounded-full bg-card px-2 py-1 text-[11px] text-text-secondary"
             >
               {tech}
             </span>
           ))}
         </div>
 
-        <a
-          href={project.repoUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="mono-label mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-text-primary transition-colors hover:text-signal"
-        >
-          Source code <ArrowUpRight size={13} strokeWidth={2} />
-        </a>
+        <div className="mt-6 flex flex-wrap items-center gap-4">
+          {/* GitHub */}
+          <a
+            href={project.repoUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-text-primary transition-colors hover:text-secondary"
+          >
+            View on GitHub
+            <ArrowUpRight size={13} />
+          </a>
+
+          {/* Live Demo */}
+          {project.hostedUrl && (
+            <a
+              href={project.hostedUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-secondary transition-colors hover:text-text-primary"
+            >
+              <Globe2 size={14} />
+              Live Demo
+              <ArrowUpRight size={13} />
+            </a>
+          )}
+        </div>
       </div>
     </article>
   );

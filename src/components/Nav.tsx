@@ -2,29 +2,29 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { routes, profile } from "@/lib/data";
-import { ThemeToggle } from "./ThemeToggle";
-
-const methodColor: Record<string, string> = {
-  GET: "text-signal",
-  POST: "text-violet",
-};
+import { navLinks, profile } from "@/lib/data";
 
 export function Nav() {
   const [activeId, setActiveId] = useState<string>("home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const sections = routes
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = navLinks
       .map((r) => document.getElementById(r.id))
       .filter((el): el is HTMLElement => Boolean(el));
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveId(entry.target.id);
         });
       },
       { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
@@ -35,70 +35,64 @@ export function Nav() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-paper/85 backdrop-blur-md dark:bg-ink/85">
+    <header
+      className={`sticky top-0 z-50 transition-colors ${
+        scrolled ? "glass-card border-b" : "border-b border-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a
-          href="#home"
-          className="mono-label text-sm font-medium text-text-primary"
-        >
-          {profile.name.split(" ")[0].toLowerCase()}
-          <span className="text-signal">.</span>dev
+        <a href="#home" className="font-display text-lg font-semibold text-text-primary">
+          {profile.name.split(" ")[0]}
+          <span className="gradient-text">.</span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {routes.map((route) => {
-            const active = activeId === route.id;
+        <nav className="hidden items-center gap-1 lg:flex">
+          {navLinks.map((link) => {
+            const active = activeId === link.id;
             return (
               <a
-                key={route.id}
-                href={`#${route.id}`}
-                className={`mono-label group flex items-center gap-2 rounded-full px-3 py-1.5 text-xs transition-colors ${
+                key={link.id}
+                href={`#${link.id}`}
+                className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
                   active
-                    ? "bg-signal-soft text-signal"
+                    ? "bg-primary/15 text-secondary"
                     : "text-text-secondary hover:text-text-primary"
                 }`}
               >
-                <span
-                  className={`${methodColor[route.method]} ${
-                    active ? "" : "opacity-60"
-                  }`}
-                >
-                  {route.method}
-                </span>
-                <span>{route.path}</span>
+                {link.label}
               </a>
             );
           })}
         </nav>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
+          <a
+            href="#contact"
+            className="hidden rounded-full bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 sm:inline-block"
+          >
+            Contact Me
+          </a>
           <button
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-text-primary md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-text-primary lg:hidden"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}
           >
-            {menuOpen ? (
-              <X size={16} strokeWidth={1.75} />
-            ) : (
-              <Menu size={16} strokeWidth={1.75} />
-            )}
+            {menuOpen ? <X size={16} /> : <Menu size={16} />}
           </button>
         </div>
       </div>
 
       {menuOpen && (
-        <nav className="flex flex-col gap-1 border-t border-hairline px-6 py-3 md:hidden">
-          {routes.map((route) => (
+        <nav className="glass-card flex flex-col gap-1 border-t px-6 py-3 lg:hidden">
+          {navLinks.map((link) => (
             <a
-              key={route.id}
-              href={`#${route.id}`}
+              key={link.id}
+              href={`#${link.id}`}
               onClick={() => setMenuOpen(false)}
-              className="mono-label flex items-center gap-3 rounded-lg px-2 py-2 text-sm text-text-secondary hover:bg-signal-soft hover:text-signal"
+              className="rounded-lg px-2 py-2 text-sm text-text-secondary hover:bg-primary/10 hover:text-text-primary"
             >
-              <span className={methodColor[route.method]}>{route.method}</span>
-              <span>{route.path}</span>
+              {link.label}
             </a>
           ))}
         </nav>
